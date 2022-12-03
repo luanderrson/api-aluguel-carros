@@ -1,4 +1,5 @@
-import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { CategoriesRepository } from "../../repositories/implementations/CategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
   name: string, 
@@ -20,10 +21,8 @@ interface IRequest {
 
 // Service = Alto nível
 // Rotas = Baixo nível "É o que está mais perto do usuario"
-class CreateCategoryServices {
-  constructor(private categoriesRepository: CategoriesRepository){
-
-  }
+class CreateCategoryUseCase {
+  constructor(private categoriesRepository: ICategoriesRepository) {}
 
   execute({name, description}: IRequest): void {
     const categoriesRepository = new CategoriesRepository();
@@ -39,4 +38,4 @@ class CreateCategoryServices {
   }
 }
 
-export { CreateCategoryServices }
+export { CreateCategoryUseCase }
